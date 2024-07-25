@@ -1,0 +1,6 @@
+print("Welcome to mad lib game")
+noun = input("Enter Noun:")
+verb = input ("Enter verb:") 
+adjective = input("Enter adjective:")
+adverb = input("Enter adverb:")
+print("Once upon a time, there was a", adjective, ' ' , noun , "who loved to " ,  verb, ' ' ,adverb)
