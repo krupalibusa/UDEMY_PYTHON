@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System - Loans</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'books' %}">Books</a>
+        <a href="{% url 'members' %}">Members</a>
+        <a href="{% url 'loans' %}">Loans</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+    <main>
+        <section id="loans">
+            <center><h2>Manage Loans</h2></center>
+            <div class="form-container">
+                <center><h3>Borrow Book</h3></center>
+                <form id="borrow-book-form" method="post" action="{% url 'loans' %}">
+                    {% csrf_token %}
+                    <label for="book-title">Book Title:</label>
+                    <select id="book-title" name="book-title" required>
+                        <option value="" disabled selected>Select Book</option>
+                        {% for book in books %}
+                            <option value="{{ book.BookID }}">{{ book.BookName }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="member-name">Member Name:</label>
+                    <select id="member-name" name="member-name" required>
+                        <option value="" disabled selected>Select Member</option>
+                        {% for member in members %}
+                            <option value="{{ member.MID }}">{{ member.Name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="borrow-date">Borrow Date:</label>
+                    <input type="date" id="borrow-date" name="borrow-date" required>
+                    <button type="submit">Borrow Book</button>
+                </form>
+            </div>
+
+           
+
+            <div class="loans-list">
+                <center><h3>Current Loans</h3></center>
+                <table id="loans-table">
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Member Name</th>
+                            <th>Borrow Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for borrow in borrows %}
+                        <tr>
+                            <td>{{ borrow.BookID.BookName }}</td>
+                            <td>{{ borrow.MID.Name }}</td>
+                            <td>{{ borrow.b_date }}</td>
+                            <td>
+                                <form method="post" action="{% url 'loans' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="return_book_id" value="{{ borrow.BID }}">
+                                    <button type="submit" class="return-button">Return Book</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Library Management System</p>
+    </footer>
+</body>
+</html>
