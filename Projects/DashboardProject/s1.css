@@ -1,0 +1,55 @@
+/* styles.css */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.sidebar-content {
+    background-color: #f5f5f5; /* Grey background for the sidebar */
+}
+
+.main-content {
+    background-color: #ffffff; /* White background for main content */
+    border-radius: 8px; /* Rounded corners for main content */
+    padding: 20px; /* Padding around the content */
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    background-color: #62d375; /* Light green background */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for the card container */
+}
+
+.card {
+    background-color: #ffffff; /* White background for each card */
+    border: 1px solid #dddddd; /* Light border for cards */
+    border-radius: 8px; /* Rounded corners for cards */
+    padding: 20px; /* Padding inside each card */
+    width: 18%; /* Adjust width to fit five cards in one row */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    text-align: center; /* Center text inside cards */
+}
+
+.card2ndrow {
+    background-color: #ffffff; /* White background for each card */
+    border: 1px solid #dddddd; /* Light border for cards */
+    border-radius: 8px; /* Rounded corners for cards */
+    padding: 15px; /* Padding inside each card */
+    width: calc(100% / 7 - 14px); /* Width to fit seven cards in one row */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    text-align: center; /* Center text inside cards */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.card2ndrow-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between cards */
+    justify-content: space-between;
+    background-color:  #62d375; /* Light green background */
+    padding: 10px;
+    border-radius: 8px; /* Rounded corners for the card container */
+}
