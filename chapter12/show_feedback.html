@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Feedback Form</title>
+    <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        td {
+            vertical-align: top;
+        }
+        th, td {
+            text-align: center;
+        }
+        table td:last-child {
+            display: flex;
+            justify-content: center;
+        }
+        .no-entries {
+            text-align: center;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Feedback List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Feedback Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback_entry in allfeedback %}
+                <tr>
+                    <td>{{ feedback_entry.name }}</td>
+                    <td>{{ feedback_entry.email }}</td>
+                    <td>{{ feedback_entry.contact_no }}</td>
+                    <td>{{ feedback_entry.msg}}</td>
+                    <td class="actions">
+                        <a href="{% url 'feedback_update' feedback_entry.pk %}">Edit&nbsp;&nbsp;</a>
+                        <a href="{% url 'feedback_delete' feedback_entry.pk %}">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No feedback entries found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
